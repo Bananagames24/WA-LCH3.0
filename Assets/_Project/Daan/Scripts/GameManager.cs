@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void OnEscape(InputAction.CallbackContext ctx)
+    private void OnEscape(InputAction.CallbackContext ctx)
     {
         // toggle pause state
         if (isPaused) ResumeGame();
@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void ResumeGame()
+    public void ResumeGame()
     {
         isPaused = false;
         Time.timeScale = 1f;
