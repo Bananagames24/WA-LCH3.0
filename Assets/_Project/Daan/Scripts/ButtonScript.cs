@@ -12,4 +12,13 @@ public class ButtonScript : MonoBehaviour
     {
         buttonManager.gameManager.ResumeGame();
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+        if (Application.isEditor)
+        {
+            UnityEditor.EditorApplication.isPlaying = false;
+        }
+    }
 }
