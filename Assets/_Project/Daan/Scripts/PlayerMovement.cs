@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerInput))]
@@ -10,6 +11,18 @@ public class PlayerMovement : MonoBehaviour
     public float sprintSpeed = 6f;
     public float jumpHeight = 1.2f;
     public float gravity = -9.81f;
+    public float stamina = 5f; // seconds of sprinting available
+    [Tooltip("How fast stamina drains while sprinting (points per second). 1 = 1 second of stamina per second")] public float staminaDrainRate = 1f;
+    [Tooltip("How fast stamina regenerates when not sprinting (points per second)")] public float staminaRegenRate = 0.75f;
+    [Tooltip("Minimum stamina required to start sprinting") ] public float minStaminaToSprint = 0.1f;
+    [HideInInspector]
+    [Tooltip("Current stamina (visible at runtime)")]
+    public float currentStamina;
+    [Tooltip("Delay (seconds) before stamina starts regenerating after stopping sprinting")] public float staminaRegenDelay = 1f;
+    float regenDelayTimer = 0f;
+    [Header("UI")]
+    [Tooltip("Optional UI Slider to display current stamina")]
+    public Slider staminaSlider;
 
     [Header("Look")]
     public Transform playerCamera; // assign main camera transform
@@ -45,6 +58,15 @@ public class PlayerMovement : MonoBehaviour
         }
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        // initialize stamina
+        currentStamina = stamina;
+        if (staminaSlider != null)
+        {
+            staminaSlider.maxValue = stamina;
+            staminaSlider.minValue = 0f;
+            staminaSlider.value = currentStamina;
+        }
     }
 
     void OnEnable()
@@ -86,12 +108,50 @@ public class PlayerMovement : MonoBehaviour
             sprinting = val > 0.5f;
         }
 
+        // only allow sprinting when there is enough stamina
+        if (sprinting && currentStamina <= minStaminaToSprint)
+        {
+            sprinting = false;
+        }
+
         float speed = sprinting ? sprintSpeed : walkSpeed;
 
         Vector3 move = transform.right * input.x + transform.forward * input.y;
         Vector3 horizontal = move * speed;
 
         controller.Move((horizontal + new Vector3(0, velocity.y, 0)) * Time.deltaTime);
+
+        // update stamina: drain while sprinting, regenerate otherwise after a delay
+        if (sprinting)
+        {
+            currentStamina -= staminaDrainRate * Time.deltaTime;
+            if (currentStamina < 0f) currentStamina = 0f;
+            // reset regen delay when sprinting
+            regenDelayTimer = staminaRegenDelay;
+        }
+        else
+        {
+            // count down the regen delay first
+            if (regenDelayTimer > 0f)
+            {
+                regenDelayTimer -= Time.deltaTime;
+                if (regenDelayTimer < 0f) regenDelayTimer = 0f;
+            }
+            else
+            {
+                if (currentStamina < stamina)
+                {
+                    currentStamina += staminaRegenRate * Time.deltaTime;
+                    if (currentStamina > stamina) currentStamina = stamina;
+                }
+            }
+        }
+
+        // update UI slider if assigned
+        if (staminaSlider != null)
+        {
+            staminaSlider.value = currentStamina;
+        }
     }
 
     void HandleLook()
