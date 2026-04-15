@@ -93,8 +93,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 21315fb86a928cb4582c124595af43b7, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 92006880a1008e349ab169cc8899191f, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1503,7 +1503,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &808763472
 Light:
   m_ObjectHideFlags: 0
@@ -2616,6 +2616,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360284118}
   m_CullTransparentMesh: 1
+--- !u!1 &1609960146 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3708050623748777264, guid: a55c28c74c39d9f4587b7df2ed5d5bd3, type: 3}
+  m_PrefabInstance: {fileID: 5471229429400741351}
+  m_PrefabAsset: {fileID: 0}
 --- !u!108 &1609960149 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 7259995102851078425, guid: a55c28c74c39d9f4587b7df2ed5d5bd3, type: 3}
@@ -3396,6 +3401,26 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &2104015660 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8772862554825484943, guid: a55c28c74c39d9f4587b7df2ed5d5bd3, type: 3}
+  m_PrefabInstance: {fileID: 5471229429400741351}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2104015670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104015660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7be3f36f235998f4982b9ae214be154f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerFlashlight
+  flashlight: {fileID: 1609960149}
+  flashlightObject: {fileID: 1609960146}
+  startOn: 0
 --- !u!1 &2114739474
 GameObject:
   m_ObjectHideFlags: 0
@@ -3535,6 +3560,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2114739474}
   m_CullTransparentMesh: 1
+--- !u!1 &2117092804
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2117092806}
+  - component: {fileID: 2117092805}
+  m_Layer: 0
+  m_Name: StaticLightingSky
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2117092805
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117092804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 441482e8936e35048a1dffac814e3ef8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.StaticLightingSky
+  m_Profile: {fileID: 11400000, guid: 4594f4a3fb14247e192bcca6dc23c8ed, type: 2}
+  m_StaticLightingSkyUniqueID: 0
+  m_StaticLightingCloudsUniqueID: 0
+  m_StaticLightingVolumetricClouds: 0
+  bounces: 1
+--- !u!4 &2117092806
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117092804}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &5471229429400741351
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3557,7 +3631,7 @@ PrefabInstance:
       objectReference: {fileID: 2100540603}
     - target: {fileID: 1613233943035854184, guid: a55c28c74c39d9f4587b7df2ed5d5bd3, type: 3}
       propertyPath: batteryDrainRate
-      value: 0.33
+      value: 0.334
       objectReference: {fileID: 0}
     - target: {fileID: 5440146874594594244, guid: a55c28c74c39d9f4587b7df2ed5d5bd3, type: 3}
       propertyPath: m_Camera
@@ -3570,6 +3644,18 @@ PrefabInstance:
     - target: {fileID: 5440146874594594244, guid: a55c28c74c39d9f4587b7df2ed5d5bd3, type: 3}
       propertyPath: m_NotificationBehavior
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440146874594594244, guid: a55c28c74c39d9f4587b7df2ed5d5bd3, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440146874594594244, guid: a55c28c74c39d9f4587b7df2ed5d5bd3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_ActionId
+      value: 76bffa81-d62a-430e-9116-c117d21b0000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5440146874594594244, guid: a55c28c74c39d9f4587b7df2ed5d5bd3, type: 3}
+      propertyPath: m_ActionEvents.Array.data[19].m_ActionName
+      value: 'Player/Escape[/Keyboard/escape]'
       objectReference: {fileID: 0}
     - target: {fileID: 7255119884565443402, guid: a55c28c74c39d9f4587b7df2ed5d5bd3, type: 3}
       propertyPath: flashlight
@@ -3622,7 +3708,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8772862554825484943, guid: a55c28c74c39d9f4587b7df2ed5d5bd3, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 2104015670}
   m_SourcePrefab: {fileID: 100100000, guid: a55c28c74c39d9f4587b7df2ed5d5bd3, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -3640,3 +3729,4 @@ SceneRoots:
   - {fileID: 121973693}
   - {fileID: 1840772063}
   - {fileID: 817989861}
+  - {fileID: 2117092806}
