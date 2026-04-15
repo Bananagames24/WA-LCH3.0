@@ -10,6 +10,7 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Battery")]
     public float maxBattery = 100f;
+    [HideInInspector]
     public float currentBattery;
     public float batteryDrainRate = 1f; // Drain per second
     public Slider batterySlider;
